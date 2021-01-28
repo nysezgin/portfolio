@@ -13,8 +13,6 @@ $font-size-very-large: 3rem; //title
 
 //// Extends
 
-// Portfolio Sections
-
 %portfolio-section {
   display: grid;
   justify-items: center;
@@ -37,8 +35,6 @@ $font-size-very-large: 3rem; //title
   font-size: $font-size-medium;
 }
 
-// Menu Bars
-
 %menu__bar {
   background-color: $color-timberwolf;
   border-radius: 80px;
@@ -46,6 +42,27 @@ $font-size-very-large: 3rem; //title
   height: 5px;
   margin: 6px 0;
   transition: transform 0.3s ease;
+}
+
+%portfolio-sub-section {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    row-gap: 15px;
+    column-gap: 20px;
+  }
+
+%icon-with-text {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 3rem auto;
+  column-gap: 10px;
+}
+
+%icon {
+  font-size: $font-size-large;
+  color: white;
+  justify-self: center;
 }
 
 //// General
@@ -226,46 +243,57 @@ header {
 
 .skills {
   display: grid;
-  justify-items: center;
   text-align: center;
   row-gap: 20px;
   width: 100%;
 
   &__title {
-    font-size: $font-size-large;
-    color: $color-timberwolf;
+    @extend %portfolio-section-title;
+    margin-top: 0;
   }
 
   &__list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 9.5rem);
-    justify-content: center;
-    row-gap: 15px;
-    column-gap: 20px;
+    @extend %portfolio-sub-section;
+    grid-template-columns: repeat(auto-fit, 9.5rem);
   }
 
   &__item {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 3rem auto;
+    @extend %icon-with-text;
   }
 
   &__icon {
-    font-size: $font-size-large;
-    color: white;
-    justify-self: center;
+    @extend %icon;
   }
 
   &__label {
-    font-size: $font-size-medium;
-    color: $color-quick-silver;
+    @extend %portfolio-section-info;
   }
 }
 
 // Contact
 
+.contact {
+&__wrapper {
+  @extend %portfolio-sub-section;
+}
 
+
+&__piece {
+  @extend %icon-with-text;
+}
+
+&__link {
+  align-self: center;
+}
+
+  &__icon {
+    @extend %icon;
+  }
+
+  &__info {
+    text-align: left;
+  }
+}
 
 //// Custom Scrollbar
 

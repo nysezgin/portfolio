@@ -1,9 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 
+//// Mixins
+
+@mixin desktop {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
 //// Variables
 
 $color-rich-black: #0e1212; //background
 $color-dark-orange: #ff9011; //links
+$color-dark-orange-altered: #c9720f; //links-visited
 $color-quick-silver: #a1a1a1; //info text
 $color-timberwolf: #e4dfda; //title
 
@@ -11,23 +26,18 @@ $font-size-medium: 1.4rem; //info text
 $font-size-large: 1.9rem; //sub-titles & icons
 $font-size-very-large: 3rem; //title
 
-//// Extends
+$header-desktop-width: 250px;
 
-%portfolio-section {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  row-gap: 20px;
-  min-height: 100vh;
-  width: 90%;
-  margin: 0 auto;
-}
+//// Extends
 
 %portfolio-section-title {
   margin-top: 60px;
   color: $color-timberwolf;
   font-size: $font-size-very-large;
   align-self: flex-end;
+  @include desktop {
+    margin-top: 0;
+  }
 }
 
 %portfolio-section-info {
@@ -35,28 +45,12 @@ $font-size-very-large: 3rem; //title
   font-size: $font-size-medium;
 }
 
-%menu__bar {
-  background-color: $color-timberwolf;
-  border-radius: 80px;
-  width: 35px;
-  height: 5px;
-  margin: 6px 0;
-  transition: transform 0.3s ease;
-}
-
 %portfolio-sub-section {
-    width: 100%;
-    display: grid;
-    justify-content: center;
-    row-gap: 15px;
-    column-gap: 20px;
-  }
-
-%icon-with-text {
+  width: 100%;
   display: grid;
-  align-items: center;
-  grid-template-columns: 3rem auto;
-  column-gap: 10px;
+  justify-content: center;
+  row-gap: 15px;
+  column-gap: 20px;
 }
 
 %icon {
@@ -78,13 +72,12 @@ body {
 
 #root {
   min-height: 100%;
-  background: $color-rich-black;
+  background: linear-gradient($color-rich-black, #273131);
   font-family: "Source Sans Pro", sans-serif;
   line-height: 1.5;
-}
-
-a {
-  color: $color-dark-orange;
+  @include desktop {
+    padding-left: $header-desktop-width;
+  }
 }
 
 //// Header
@@ -100,14 +93,30 @@ header {
   z-index: 99;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  @include desktop {
+    padding: 0;
+    justify-items: center;
+    align-items: baseline;
+    left: 0;
+    width: $header-desktop-width;
+    height: 100%;
+    grid-template-columns: auto 0;
+    grid-template-rows: 150px auto;
+  }
 }
 
 // Logo
 
 .logo {
   font-size: 25px;
-  color: $color-timberwolf;
   justify-self: baseline;
+  color: $color-quick-silver;
+  @include desktop {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 25px 0;
+  }
 }
 
 // Menu
@@ -116,25 +125,27 @@ header {
   justify-self: end;
   cursor: pointer;
 
-  &__bar-1 {
-    @extend %menu__bar;
-    &--active {
-      transform: rotate(-45deg) translate(-9px, 6px);
-    }
-  }
-
-  &__bar-2 {
-    @extend %menu__bar;
-    &--active {
-      opacity: 0;
-    }
-  }
-
+  &__bar-1,
+  &__bar-2,
   &__bar-3 {
-    @extend %menu__bar;
-    &--active {
-      transform: rotate(45deg) translate(-8px, -8px);
-    }
+    background-color: $color-quick-silver;
+    border-radius: 80px;
+    width: 35px;
+    height: 5px;
+    margin: 6px 0;
+    transition: transform 0.3s ease;
+  }
+
+  &__bar-1--active {
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+
+  &__bar-2--active {
+    opacity: 0;
+  }
+
+  &__bar-3--active {
+    transform: rotate(45deg) translate(-8px, -8px);
   }
 }
 
@@ -147,6 +158,12 @@ header {
   grid-column: 1 / span 2;
   font-size: $font-size-medium;
   overflow: hidden;
+  width: 100%;
+  @include desktop {
+    grid-column: auto;
+    grid-row: 2;
+    font-size: $font-size-large;
+  }
 
   &__list {
     max-height: 0;
@@ -157,6 +174,11 @@ header {
       opacity: 1;
       max-height: 14.5rem;
     }
+
+    @include desktop {
+      opacity: 1;
+      max-height: 100%;
+    }
   }
 
   &__link {
@@ -164,6 +186,14 @@ header {
     padding: 15px 0;
     color: $color-timberwolf;
     text-transform: capitalize;
+    @include desktop {
+      padding: 30px 0;
+      border-right: 3px solid transparent;
+      transition: border-color 0.5s ease;
+      &:hover {
+        border-color: $color-dark-orange;
+      }
+    }
   }
 
   &__overlay {
@@ -184,11 +214,25 @@ header {
 
 //// Main
 
+main a {
+  color: $color-dark-orange;
+  &:visited {
+    color: $color-dark-orange-altered;
+  }
+}
+
 .intro,
 .projects,
 .about,
 .contact {
-  @extend %portfolio-section;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  row-gap: 20px;
+  min-height: 100vh;
+  width: 90%;
+  margin: 0 auto;
+
   &__title {
     @extend %portfolio-section-title;
   }
@@ -202,11 +246,16 @@ header {
 .intro {
   &__title {
     font-size: 3.5rem;
+
+    @include desktop {
+      font-size: 7rem;
+    }
   }
 
-  &__image {
-    border-radius: 50%;
-    width: 190px;
+  &__info {
+    @include desktop {
+      font-size: $font-size-large;
+    }
   }
 }
 
@@ -216,11 +265,24 @@ header {
   &__wrapper {
     display: grid;
     row-gap: 20px;
+    width: 90%;
+    margin-bottom: 10px;
+    @include desktop {
+      justify-content: space-around;
+      width: 100%;
+      column-gap: 30px;
+      grid-template-columns: repeat(auto-fit, 300px);
+      margin-bottom: 60px;
+    }
   }
 
   &__link {
     position: relative;
     display: flex;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: rgba(135, 135, 135, 0.4) 1px 3px 5px,
+      rgba(135, 135, 135, 0.3) 4px 6px 5px, rgba(135, 135, 135, 0.2) 7px 9px 5px;
   }
 
   &__image {
@@ -228,6 +290,12 @@ header {
     height: 100%;
     object-fit: cover;
     max-width: 500px;
+    @include desktop {
+      transition: transform 0.5s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
 
   &__label {
@@ -242,24 +310,59 @@ header {
 
 // About
 
+.about {
+  &__info {
+    display: grid;
+    justify-items: center;
+    row-gap: 20px;
+    @include desktop {
+      grid-template-columns: auto 200px;
+      align-items: center;
+      column-gap: 30px;
+    }
+  }
+
+  &__image {
+    border-radius: 50%;
+    width: 150px;
+    @include desktop {
+      width: 200px;
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+}
+
 .skills {
   display: grid;
   text-align: center;
   row-gap: 20px;
   width: 100%;
 
+  @include desktop {
+    margin-bottom: 60px;
+  }
+
   &__title {
     @extend %portfolio-section-title;
+    font-size: $font-size-large;
     margin-top: 0;
   }
 
   &__list {
     @extend %portfolio-sub-section;
-    grid-template-columns: repeat(auto-fit, 9.5rem);
+    grid-template-columns: repeat(auto-fit, 8rem);
+    @include tablet {
+      column-gap: 60px;
+    }
+    @include desktop {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 
   &__item {
-    @extend %icon-with-text;
+    display: grid;
+    align-items: center;
   }
 
   &__icon {
@@ -274,25 +377,32 @@ header {
 // Contact
 
 .contact {
-&__wrapper {
-  @extend %portfolio-sub-section;
-  margin-bottom: 100px;
-}
+  &__wrapper {
+    @extend %portfolio-sub-section;
+    margin-bottom: 100px;
+    @include desktop {
+      grid-template-columns: auto auto;
+      justify-content: space-evenly;
+    }
+  }
 
+  &__piece {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 3rem auto;
+    column-gap: 10px;
+  }
 
-&__piece {
-  @extend %icon-with-text;
-}
-
-&__link {
-  align-self: center;
-}
+  &__link {
+    align-self: center;
+  }
 
   &__icon {
     @extend %icon;
   }
 
-  &__info {
+  &__label {
+    @extend %portfolio-section-info;
     text-align: left;
   }
 }
@@ -305,6 +415,13 @@ footer {
   background-color: black;
   color: $color-quick-silver;
   text-align: center;
+
+  a {
+    color: $color-dark-orange;
+    &:visited {
+      color: $color-dark-orange-altered;
+    }
+  }
 }
 
 //// Custom Scrollbar

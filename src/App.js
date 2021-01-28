@@ -1,4 +1,4 @@
-import "./reset.css";
+import "./reset.scss";
 import "./App.scss";
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";

@@ -4,15 +4,7 @@ export default function Footer() {
     return (
       <footer>
         © Necati Yasin Sezgin 2021 <br />
-        Project designs are from{" "}
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href="https://www.frontendmentor.io/challenges"
-        >
-          Frontend Mentor
-        </a>
-        . <br/> Icons by{" "}
+        Icons by{" "}
         <a target="_blank" rel="noreferrer" href="https://fontawesome.com">
           Font Awesome
         </a>

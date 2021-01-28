@@ -11,4 +11,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This website is MIT licensed (see the LICENSE file), but please be aware that the following are licensed by their own respectful owners:
 
 * Icons by [Font Awesome](https://fontawesome.com), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
-* Background by [SVGbackgrounds](https://svgbackgrounds.com), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)

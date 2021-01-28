@@ -80,6 +80,7 @@ body {
   min-height: 100%;
   background: $color-rich-black;
   font-family: "Source Sans Pro", sans-serif;
+  line-height: 1.5;
 }
 
 a {
@@ -275,6 +276,7 @@ header {
 .contact {
 &__wrapper {
   @extend %portfolio-sub-section;
+  margin-bottom: 100px;
 }
 
 
@@ -293,6 +295,16 @@ header {
   &__info {
     text-align: left;
   }
+}
+
+//// Footer
+
+footer {
+  padding: 10px;
+  font-size: 0.8rem;
+  background-color: black;
+  color: $color-quick-silver;
+  text-align: center;
 }
 
 //// Custom Scrollbar

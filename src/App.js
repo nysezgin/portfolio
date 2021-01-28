@@ -3,6 +3,7 @@ import "./App.scss";
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Footer from "./components/Footer";
 
 function App() {
   //// IsMobile Check
@@ -20,6 +21,7 @@ function App() {
     <>
       <Header isMobile={isMobile} />
       <Main />
+      <Footer />
     </>
   );
 }

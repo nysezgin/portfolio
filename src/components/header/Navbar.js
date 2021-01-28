@@ -3,8 +3,8 @@ import NavbarItem from './NavbarItem'
 
 export default function Navbar({ handleNavOpen, isMobile, isNavOpen }) {
   return (
-    <nav className={isMobile && isNavOpen ? "navbar navbar--active" : "navbar"}>
-      <ul className="navbar__list">
+    <nav className="navbar">
+      <ul className={isMobile && isNavOpen ? "navbar__list navbar__list--active" : "navbar__list"}>
         <NavbarItem handleNavOpen={handleNavOpen} itemName="intro" />
         <NavbarItem handleNavOpen={handleNavOpen} itemName="projects" />
         <NavbarItem handleNavOpen={handleNavOpen} itemName="about" />

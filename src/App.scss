@@ -2,29 +2,32 @@
 
 //// Variables
 
-// Colors
-
 $color-rich-black: #0e1212; //background
 $color-dark-orange: #ff9011; //links
 $color-quick-silver: #a1a1a1; //info text
 $color-timberwolf: #e4dfda; //title
 
-// Font Size
-
 $font-size-medium: 1.4rem; //info text
-$font-size-large: 1.8rem; //title
+$font-size-large: 3rem; //title
 
 //// Extends
+
+// Portfolio Sections
 
 %portfolio-section {
   display: grid;
   justify-items: center;
+  text-align: center;
   row-gap: 20px;
   min-height: 100vh;
+  width: 90%;
+  margin: 0 auto;
 }
 
 %portfolio-section-title {
+  margin-top: 60px;
   color: $color-timberwolf;
+  font-size: $font-size-large;
   align-self: flex-end;
 }
 
@@ -32,6 +35,8 @@ $font-size-large: 1.8rem; //title
   color: $color-quick-silver;
   font-size: $font-size-medium;
 }
+
+// Menu Bars
 
 %menu__bar {
   background-color: $color-timberwolf;
@@ -59,12 +64,17 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+a {
+  color: $color-dark-orange;
+}
+
 //// Header
 
 header {
   position: fixed;
   display: grid;
   grid-template-columns: auto auto;
+  align-items: center;
   background-color: black;
   padding: 10px 15px;
   width: 100%;
@@ -118,13 +128,16 @@ header {
   grid-column: 1 / span 2;
   font-size: $font-size-medium;
   overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: all 0.4s ease;
 
-  &--active {
-    opacity: 1;
-    max-height: 14.5rem;
+  &__list {
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s ease;
+
+    &--active {
+      opacity: 1;
+      max-height: 14.5rem;
+    }
   }
 
   &__link {
@@ -152,23 +165,59 @@ header {
 
 //// Main
 
+.intro,
+.projects,
+.about,
+.contact {
+  @extend %portfolio-section;
+  &__title {
+    @extend %portfolio-section-title;
+  }
+  &__info {
+    @extend %portfolio-section-info;
+  }
+}
+
 // Intro
 
 .intro {
-  @extend %portfolio-section;
-
   &__title {
-    @extend %portfolio-section-title;
     font-size: 3.5rem;
-  }
-
-  &__info {
-    @extend %portfolio-section-info;
   }
 
   &__image {
     border-radius: 50%;
     width: 190px;
+  }
+}
+
+// Projects
+
+.projects {
+  &__wrapper {
+    display: grid;
+    row-gap: 20px;
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 500px;
+  }
+
+  &__label {
+    position: absolute;
+    font-size: $font-size-medium;
+    padding: 5px 0;
+    bottom: 0;
+    background: #000000cc;
+    width: 100%;
   }
 }
 

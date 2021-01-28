@@ -4,6 +4,9 @@ import Menu from "./header/MenuBar";
 
 export default function Header({ isMobile }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const handleNavOpen = () => {
+    setIsNavOpen(!isNavOpen);
+  }
 
   return (
     <header>
@@ -11,13 +14,17 @@ export default function Header({ isMobile }) {
         nysezgin.com
       </a>
       {isMobile && (
-        <div className="menu" onClick={() => setIsNavOpen(!isNavOpen)}>
+        <div className="menu" onClick={() => handleNavOpen()}>
           <Menu number={"1"} isNavOpen={isNavOpen} />
           <Menu number={"2"} isNavOpen={isNavOpen} />
           <Menu number={"3"} isNavOpen={isNavOpen} />
         </div>
       )}
-      <Navbar navbarOpen={isNavOpen} />
+      <Navbar
+        handleNavOpen={handleNavOpen}
+        isMobile={isMobile}
+        isNavOpen={isNavOpen}
+      />
     </header>
   );
 }

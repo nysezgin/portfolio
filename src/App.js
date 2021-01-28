@@ -14,10 +14,6 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("resize", checkSize);
-    return () => {
-      window.removeEventListener("resize", checkSize);
-    };
-    
   }, []);
   const isMobile = size < 768;
   return (

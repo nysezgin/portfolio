@@ -318,7 +318,7 @@ main a {
     @include desktop {
       grid-template-columns: auto 200px;
       align-items: center;
-      column-gap: 30px;
+      column-gap: 50px;
     }
   }
 
@@ -341,12 +341,17 @@ main a {
 
   @include desktop {
     margin-bottom: 60px;
+    grid-template-columns: auto auto;
   }
 
   &__title {
     @extend %portfolio-section-title;
     font-size: $font-size-large;
     margin-top: 0;
+    @include desktop {
+      align-self: center;
+      border-right: 1px solid black;
+    }
   }
 
   &__list {

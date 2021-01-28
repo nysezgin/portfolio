@@ -98,3 +98,7 @@ button, input {
 button {
     cursor: pointer;
   }
+
+img {
+    max-width: 100%;
+}

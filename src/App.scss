@@ -1,9 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+
+//// Variables
+
+// Colors
+
+$color-rich-black: #0e1212; //background
+$color-dark-orange: #ff9011; //links
+$color-quick-silver: #a1a1a1; //info text
+$color-timberwolf: #e4dfda; //title
+
+// Font Size
+
+$font-size-medium: 1.4rem; //info text
+$font-size-large: 1.8rem; //title
+
+//// Extends
+
+%portfolio-section {
+  display: grid;
+  justify-items: center;
+  row-gap: 20px;
+  min-height: 100vh;
+}
+
+%portfolio-section-title {
+  color: $color-timberwolf;
+  align-self: flex-end;
+}
+
+%portfolio-section-info {
+  color: $color-quick-silver;
+  font-size: $font-size-medium;
+}
+
+%menu__bar {
+  background-color: $color-timberwolf;
+  border-radius: 80px;
+  width: 35px;
+  height: 5px;
+  margin: 6px 0;
+  transition: transform 0.3s ease;
+}
+
 //// General
 
-html, body {
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
   height: 100%;
 }
 
 #root {
   min-height: 100%;
+  background: $color-rich-black;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+//// Header
+
+header {
+  position: fixed;
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: black;
+  padding: 10px 15px;
+  width: 100%;
+  z-index: 99;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+// Logo
+
+.logo {
+  font-size: 25px;
+  color: $color-timberwolf;
+  justify-self: baseline;
+}
+
+// Menu
+
+.menu {
+  justify-self: end;
+  cursor: pointer;
+
+  &__bar-1 {
+    @extend %menu__bar;
+    &--active {
+      transform: rotate(-45deg) translate(-9px, 6px);
+    }
+  }
+
+    &__bar-2 {
+    @extend %menu__bar;
+    &--active {
+      opacity: 0;
+    }
+  }
+
+   &__bar-3 {
+    @extend %menu__bar;
+    &--active {
+      transform: rotate(45deg) translate(-8px, -8px);
+    }
+  }
+}
+
+// Navbar
+
+.navbar {
+
+}
+
+//// Main
+
+// Intro
+
+.intro {
+  @extend %portfolio-section;
+
+  &__title {
+    @extend %portfolio-section-title;
+    font-size: 3.5rem;
+  }
+
+  &__info {
+    @extend %portfolio-section-info;
+  }
+
+  &__image {
+    border-radius: 50%;
+    width: 190px;
+  }
 }

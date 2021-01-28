@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("resize", checkSize);
   }, []);
-  const isMobile = size < 768;
+  const isMobile = size < 1024;
   return (
     <>
       <Header isMobile={isMobile} />

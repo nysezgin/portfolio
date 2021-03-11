@@ -18,14 +18,7 @@ export default function SingleProject({
         <h2 className="projects__name">{label}</h2>
         <div className="projects__info-wrapper">
           <p className="projects__label">Link:</p>
-          <a
-            className="projects__label-info"
-            href={link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Google Store Page
-          </a>
+          {link}
         </div>
         <div className="projects__info-wrapper">
           <p className="projects__label">Genre:</p>

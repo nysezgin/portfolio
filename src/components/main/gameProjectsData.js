@@ -18,11 +18,11 @@ const gameProjectsData = [
     ),
     image: starsAheadImg,
     genre: "Shoot'em Up",
-    date: "2021",
+    date: "25 February 2021",
     engine: "Unity",
     platform: "Android",
     about:
-      "This is my first game project. I learned a lot about the basics and core concepts of Unity Engine while making this game.",
+      "This is my first game project. I learned a lot about the basics of Unity Engine while making this game.",
   },
   {
     id: 2,
@@ -39,11 +39,11 @@ const gameProjectsData = [
     ),
     image: zombieShooterImg,
     genre: "Top Down Shooter",
-    date: "Soon",
+    date: "04 March 2021",
     engine: "Unity",
-    platform: "Android",
+    platform: "WebGL",
     about:
-      "This project is under development. My current goal is to make a top down shooter with 3D humanoid animations",
+      "A top-down shooter prototype I made to learn more about Unity, especially how to work with animations.",
   },
 ];
 

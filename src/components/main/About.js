@@ -12,10 +12,9 @@ export default function About() {
           src={nysezgin}
           alt="Necati Yasin Sezgin"
         />
-        I am someone who likes games and passionate about making them. I spend
-        all my free time to work on my game projects, improve my programming
-        skills and learn new things about game development. My game engine of
-        choice is Unity.
+        As someone who grew up with video games, I am passionate about my career
+        in game development. I spend the majority of my time on improving my
+        skills and learning new things. My game engine of choice is Unity.
       </p>
       <section className="skills">
         <h3 className="skills__title">Skills</h3>
